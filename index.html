@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Thank the farmers who work hard to put food on our tables. Say thank you with gratitude and support." />
+  <title>Thank the Farmers | With Gratitude</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #173f25;
+      --green-dark: #102d1b;
+      --orange: #ed741d;
+      --cream: #fff8ec;
+      --ink: #17251b;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: "Manrope", Arial, sans-serif;
+      color: var(--ink);
+      background: #f7f2e8;
+    }
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      isolation: isolate;
+      display: flex;
+      flex-direction: column;
+      background:
+        linear-gradient(90deg, rgba(7, 20, 16, .82) 0%, rgba(10, 25, 18, .65) 42%, rgba(9, 20, 15, .16) 100%),
+        linear-gradient(0deg, rgba(8, 20, 14, .42), transparent 42%),
+        url("farmer-background.webp") 72% 25% / cover no-repeat;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(180deg, rgba(0,0,0,.25), transparent 24%, transparent 72%, rgba(0,0,0,.22));
+      pointer-events: none;
+    }
+    .navbar {
+      width: min(1200px, calc(100% - 48px));
+      margin: 22px auto 0;
+      padding: 13px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 22px;
+      border: 1px solid rgba(255,255,255,.27);
+      border-radius: 18px;
+      background: rgba(255,255,255,.13);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 10px 35px rgba(0,0,0,.12);
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: white;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .brand-mark {
+      width: 42px; height: 42px;
+      display: grid; place-items: center;
+      border-radius: 13px;
+      color: #fff;
+      background: linear-gradient(145deg, #f6a13c, #e66a16);
+      font-size: 24px;
+    }
+    .brand strong { display: block; font-size: 17px; line-height: 1.1; }
+    .brand small { display: block; margin-top: 3px; color: rgba(255,255,255,.82); font-size: 10px; letter-spacing: .8px; }
+    .nav-links { display: flex; align-items: center; gap: 5px; }
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 11px 12px;
+      border-radius: 999px;
+      transition: background .2s, transform .2s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active { background: var(--orange); transform: translateY(-1px); }
+    .hero-content {
+      width: min(1200px, calc(100% - 48px));
+      margin: auto;
+      padding: 95px 0 145px;
+      color: white;
+    }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 20px;
+      color: #ffe0b8;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+    .eyebrow::before { content: ""; width: 30px; height: 2px; background: var(--orange); }
+    h1 {
+      max-width: 720px;
+      margin: 0;
+      font-size: clamp(42px, 6.2vw, 78px);
+      line-height: 1.06;
+      letter-spacing: -3.5px;
+      font-weight: 800;
+      text-wrap: balance;
+    }
+    h1 span { color: #ff9a43; }
+    .hero-content p {
+      max-width: 630px;
+      margin: 25px 0 30px;
+      color: rgba(255,255,255,.91);
+      font-size: clamp(15px, 1.45vw, 18px);
+      line-height: 1.8;
+      font-weight: 500;
+    }
+    .actions { display: flex; align-items: center; flex-wrap: wrap; gap: 14px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      min-height: 52px;
+      padding: 0 25px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,.2); }
+    .btn-primary { color: white; background: linear-gradient(135deg, #f28b2e, #e65b0d); box-shadow: 0 9px 24px rgba(221,91,14,.28); }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.65); background: rgba(255,255,255,.1); }
+    .btn .arrow { font-size: 20px; line-height: 1; }
+    .scroll-note {
+      position: absolute;
+      bottom: 34px; left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,.78);
+      font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .impact-wrap {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, calc(100% - 48px));
+      margin: -58px auto 0;
+    }
+    .impact {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 24px 12px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 22px;
+      background: rgba(255,251,241,.94);
+      box-shadow: 0 18px 50px rgba(44,48,30,.14);
+      backdrop-filter: blur(14px);
+    }
+    .impact-item { text-align: center; padding: 5px 14px; border-right: 1px solid #d8d3c5; }
+    .impact-item:last-child { border: 0; }
+    .impact-item strong { display: block; color: var(--green); font-size: 25px; font-weight: 800; }
+    .impact-item span { display: block; margin-top: 4px; color: #62665c; font-size: 12px; font-weight: 700; }
+    .intro {
+      padding: 85px 24px 90px;
+      text-align: center;
+      background: linear-gradient(180deg, #f7f2e8, #fffaf1);
+    }
+    .section-kicker { color: #d96c1c; font-size: 11px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; }
+    .intro h2 { margin: 12px 0 12px; color: var(--green); font-size: clamp(29px, 4vw, 43px); letter-spacing: -1.5px; }
+    .intro > p { max-width: 650px; margin: 0 auto; color: #65685e; line-height: 1.8; font-size: 14px; }
+    .support-grid {
+      width: min(1120px, 100%);
+      margin: 42px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      text-align: left;
+    }
+    .support-card {
+      padding: 25px 22px;
+      border: 1px solid #eee5d5;
+      border-radius: 18px;
+      background: #fff;
+      box-shadow: 0 8px 24px rgba(50,55,35,.06);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .support-card:hover { transform: translateY(-5px); box-shadow: 0 16px 30px rgba(50,55,35,.1); }
+    .support-icon {
+      width: 48px; height: 48px; display: grid; place-items: center;
+      margin-bottom: 18px; border-radius: 15px;
+      background: #edf4e9; color: #2c6a36; font-size: 24px;
+    }
+    .support-card h3 { margin: 0 0 8px; color: var(--green); font-size: 16px; }
+    .support-card p { margin: 0; color: #73766d; font-size: 12px; line-height: 1.7; }
+    .closing {
+      padding: 0 24px 75px;
+      background: #fffaf1;
+    }
+    .closing-inner {
+      width: min(1120px, 100%);
+      margin: auto;
+      padding: 42px;
+      display: flex; align-items: center; justify-content: space-between; gap: 25px;
+      border-radius: 24px;
+      color: white;
+      background: linear-gradient(110deg, #183f26, #2d6a35);
+      box-shadow: 0 18px 40px rgba(24,63,38,.18);
+    }
+    .closing h2 { margin: 0 0 8px; font-size: clamp(24px, 3vw, 34px); }
+    .closing p { margin: 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.7; }
+    .closing .btn { flex-shrink: 0; color: white; background: var(--orange); }
+    footer { padding: 24px; text-align: center; color: #778071; background: #f1eddf; font-size: 11px; }
+    @media (max-width: 980px) {
+      .navbar { align-items: flex-start; flex-direction: column; }
+      .nav-links { width: 100%; overflow-x: auto; padding-bottom: 3px; }
+      .nav-links a { font-size: 11px; }
+      .hero-content { padding-top: 85px; }
+      .support-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .hero { min-height: 790px;  }
+      .navbar { width: calc(100% - 24px); margin-top: 12px; padding: 12px; border-radius: 14px; }
+      .nav-links { gap: 2px; }
+      .nav-links a { padding: 9px 10px; }
+      .hero-content { width: calc(100% - 40px); padding: 100px 0 155px; margin: 0 auto; }
+      h1 { font-size: clamp(39px, 11vw, 58px); letter-spacing: -2px; }
+      .hero-content p { font-size: 14px; line-height: 1.7; }
+      .btn { min-height: 48px; padding: 0 20px; }
+      .impact-wrap { width: calc(100% - 24px); margin-top: -75px; }
+      .impact { grid-template-columns: repeat(2, 1fr); padding: 12px 5px; }
+      .impact-item { padding: 13px 5px; }
+      .impact-item:nth-child(2) { border-right: 0; }
+      .impact-item:nth-child(1), .impact-item:nth-child(2) { border-bottom: 1px solid #d8d3c5; }
+      .impact-item strong { font-size: 20px; }
+      .impact-item span { font-size: 10px; }
+      .intro { padding: 65px 18px; }
+      .support-grid { gap: 11px; }
+      .support-card { padding: 18px 14px; }
+      .support-card h3 { font-size: 14px; }
+      .support-card p { font-size: 11px; }
+      .closing { padding: 0 18px 55px; }
+      .closing-inner { padding: 28px 22px; align-items: flex-start; flex-direction: column; }
+    }
+  
+    /* ---- Mobile menu (tablet/phone only; laptop navbar unchanged) ---- */
+    .menu-toggle { display:none; }
+    @media (max-width:980px) {
+      .navbar { flex-direction:row; align-items:center; flex-wrap:nowrap; position:relative; z-index:20; }
+      .menu-toggle { display:flex; flex-direction:column; justify-content:center; align-items:stretch; gap:5px; width:46px; height:46px; margin-left:auto; padding:0 12px; border:1px solid rgba(255,255,255,.38); border-radius:14px; background:rgba(255,255,255,.16); cursor:pointer; -webkit-tap-highlight-color:transparent; }
+      .menu-toggle span { display:block; height:2px; border-radius:2px; background:#fff; transition:transform .25s ease, opacity .2s ease; }
+      .navbar.open .menu-toggle { background:var(--orange); border-color:var(--orange); }
+      .navbar.open .menu-toggle span:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+      .navbar.open .menu-toggle span:nth-child(2) { opacity:0; }
+      .navbar.open .menu-toggle span:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+      .nav-links { display:none; position:absolute; top:calc(100% + 10px); left:0; right:0; width:auto; flex-direction:column; align-items:stretch; gap:4px; padding:12px; overflow:visible; border:1px solid rgba(255,255,255,.2); border-radius:20px; background:rgba(14,40,25,.97); box-shadow:0 22px 44px rgba(0,0,0,.35); }
+      .navbar.open .nav-links { display:flex; animation:menuIn .22s ease; }
+      .nav-links a { display:flex; align-items:center; justify-content:space-between; padding:15px 16px; border-radius:13px; font-size:15px; white-space:normal; transform:none !important; }
+      .nav-links a::after { content:"\203A"; opacity:.55; font-size:20px; line-height:1; }
+      .nav-links a.active { background:var(--orange); }
+      .nav-links a.active::after { opacity:1; }
+      .hero.menu-open, .page-hero.menu-open { z-index:30; }
+    }
+    @keyframes menuIn { from { opacity:0; transform:translateY(-8px); } to { opacity:1; transform:none; } }
+  
+    /* ---- Keep the farmer's face visible on every screen size ---- */
+    @media (min-width:601px) and (max-width:980px) {
+      .hero-content h1, .hero-content p { max-width:60%; }
+    }
+    @media (max-width:600px) {
+      .hero, .page-hero {
+        background:
+          linear-gradient(0deg, rgba(7,20,16,.92) 0%, rgba(10,25,18,.78) 38%, rgba(9,20,15,.12) 62%, rgba(9,20,15,.05) 100%),
+          url("farmer-background.webp") 72% 0 / cover no-repeat !important;
+      }
+      .hero-content { margin-top:auto !important; padding-top:340px !important; }
+      .hero { min-height:820px; }
+      .page-hero { min-height:0; }
+      .page-hero .hero-content { padding-bottom:70px !important; }
+    }
+  </style>
+  <script>document.documentElement.className+=" fx"</script>
+  <link rel="stylesheet" href="effects.css">
+</head>
+<body>
+  <header class="hero" id="home">
+    <nav class="navbar" aria-label="Main navigation">
+      <a class="brand" href="#home">
+        <span class="brand-mark">🌾</span>
+        <span><strong>Thank the Farmers</strong><small>WITH GRATITUDE</small></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></button>
+      <div class="nav-links" id="navlinks">
+        <a class="active" href="#home">Home</a>
+        <a href="what-we-do-with-donations.html">How Your Thanks Helps</a>
+        <a href="donate-bad-habits.html">Trade a Habit</a>
+        <a href="aboutus.html">About us</a>
+        <a href="impact-stories.html">Farmers' Voices</a>
+        <a href="donations.html">Say Thanks</a>
+        <a href="contact.html">Contact us</a>
+      </div>
+    </nav>
+
+    <main class="hero-content">
+      <div class="eyebrow">Gratitude for the hands that feed us</div>
+      <h1>Thank the Farmers Who Work Hard to <span>Put Food on Our Tables.</span></h1>
+      <p>Behind every grain of rice on our table is a farmer who risked weather, debt, and life itself. Thank you for feeding the nation.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="donations.html">♥ &nbsp; Say Thank You <span class="arrow">→</span></a>
+        <a class="btn btn-outline" href="#support">Why we thank them</a>
+      </div>
+    </main>
+    <div class="scroll-note">Scroll to see how you can say thanks</div>
+  </header>
+
+  <section class="impact-wrap" id="impact" aria-label="Our impact">
+    <div class="impact">
+      <div class="impact-item"><strong>Every Farmer</strong><span>Deserves our thanks</span></div>
+      <div class="impact-item"><strong>Every Village</strong><span>Feeds a nation</span></div>
+      <div class="impact-item"><strong>Your Gratitude</strong><span>Can bring back hope</span></div>
+      <div class="impact-item"><strong>One Nation</strong><span>Fed by their hands</span></div>
+    </div>
+  </section>
+
+  <section class="intro" id="support">
+    <div class="section-kicker">Your gratitude in action</div>
+    <h2>Ways to Say Thank You</h2>
+    <p>Every meal begins in a farmer's field. Here is how your thanks can reach the people who grow our food.</p>
+    <div class="support-grid">
+      <article class="support-card">
+        <div class="support-icon">🌱</div>
+        <h3>Quality Seeds</h3>
+        <p>Thank a farmer by helping them plant the next season with quality seeds.</p>
+      </article>
+      <article class="support-card">
+        <div class="support-icon">🌾</div>
+        <h3>Fertilizers</h3>
+        <p>Thank them by supporting the fertilizers that nourish every crop.</p>
+      </article>
+      <article class="support-card">
+        <div class="support-icon">🚜</div>
+        <h3>Farm Equipment</h3>
+        <p>Ease their hard labour with tools, rented drones, and useful equipment.</p>
+      </article>
+      <article class="support-card">
+        <div class="support-icon">🤝</div>
+        <h3>Crop Loss Support</h3>
+        <p>Stand beside farmers after crop loss and help them begin again.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="closing" id="donate">
+    <div class="closing-inner">
+      <div>
+        <h2>Every Thank You Can Grow Hope.</h2>
+        <p>A small gesture of gratitude can help a farmer take the next step.<br>Let's thank the people who feed our nation.</p>
+      </div>
+      <a class="btn" href="donations.html">Say Thank You <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <footer id="contact">Thank the Farmers · With Gratitude · Honouring the people who feed our nation.</footer>
+  <script>
+    (function () {
+      var nav = document.querySelector('.navbar'), btn = document.querySelector('.menu-toggle');
+      if (!nav || !btn) return;
+      var host = nav.closest('header');
+      function setOpen(o) {
+        nav.classList.toggle('open', o);
+        if (host) host.classList.toggle('menu-open', o);
+        btn.setAttribute('aria-expanded', o ? 'true' : 'false');
+      }
+      btn.addEventListener('click', function (e) { e.stopPropagation(); setOpen(!nav.classList.contains('open')); });
+      nav.querySelectorAll('.nav-links a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+      document.addEventListener('click', function (e) { if (!nav.contains(e.target)) setOpen(false); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+      window.addEventListener('resize', function () { if (window.innerWidth > 980) setOpen(false); });
+    })();
+  </script>
+  <script src="effects.js" defer></script>
+</body>
+</html>
